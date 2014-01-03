@@ -32,8 +32,8 @@ import org.spout.vanilla.component.entity.misc.Damage;
 import org.spout.vanilla.component.entity.misc.DeathDrops;
 import org.spout.vanilla.component.entity.misc.Health;
 import org.spout.vanilla.data.Difficulty;
-import org.spout.vanilla.protocol.entity.creature.CreatureProtocol;
-import org.spout.vanilla.protocol.entity.creature.CreatureType;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureProtocol;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureType;
 
 /**
  * A component that identifies the entity as a Silverfish.

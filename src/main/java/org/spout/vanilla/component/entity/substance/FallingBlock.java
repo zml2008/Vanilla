@@ -36,8 +36,8 @@ import org.spout.api.material.BlockMaterial;
 import org.spout.api.material.block.BlockFace;
 
 import org.spout.vanilla.material.VanillaBlockMaterial;
-import org.spout.vanilla.protocol.entity.object.FallingBlockProtocol;
-import org.spout.vanilla.protocol.entity.object.ObjectType;
+import org.spout.vanilla.protocol.game.entity.object.FallingBlockProtocol;
+import org.spout.vanilla.protocol.game.entity.object.ObjectType;
 
 public class FallingBlock extends Substance {
 	private BlockMaterial material;

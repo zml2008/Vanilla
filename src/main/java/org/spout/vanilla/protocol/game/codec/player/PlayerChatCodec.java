@@ -43,7 +43,7 @@ public final class PlayerChatCodec extends MessageCodec<PlayerChatMessage> {
 	private static final JsonParser parser = new JsonParser();
 
 	public PlayerChatCodec() {
-		super(PlayerChatMessage.class, 0x03);
+		super(PlayerChatMessage.class, -1, 0x02);
 	}
 
 	@Override

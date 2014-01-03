@@ -36,11 +36,10 @@ import org.spout.api.protocol.MessageCodec;
 
 import org.spout.vanilla.protocol.VanillaByteBufUtils;
 import org.spout.vanilla.protocol.game.msg.entity.EntityEquipmentMessage;
-import org.spout.vanilla.protocol.game.msg.entity.EntityEquipmentMessage;
 
 public final class EntityEquipmentCodec extends MessageCodec<EntityEquipmentMessage> {
 	public EntityEquipmentCodec() {
-		super(EntityEquipmentMessage.class, 0x05);
+		super(EntityEquipmentMessage.class, -1, 0x04);
 	}
 
 	@Override

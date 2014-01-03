@@ -36,7 +36,7 @@ import org.spout.api.geo.discrete.Point;
 import org.spout.vanilla.component.block.VanillaBlockComponent;
 import org.spout.vanilla.data.VanillaData;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.protocol.entity.creature.CreatureType;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureType;
 
 /**
  * Component that represents a Monster Spawner in the world.

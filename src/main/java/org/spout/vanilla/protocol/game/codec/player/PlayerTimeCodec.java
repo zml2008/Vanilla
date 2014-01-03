@@ -37,7 +37,7 @@ import org.spout.vanilla.protocol.game.msg.player.PlayerTimeMessage;
 
 public final class PlayerTimeCodec extends MessageCodec<PlayerTimeMessage> {
 	public PlayerTimeCodec() {
-		super(PlayerTimeMessage.class, 0x04);
+		super(PlayerTimeMessage.class, -1, 0x03);
 	}
 
 	@Override

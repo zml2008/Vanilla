@@ -39,8 +39,8 @@ import org.spout.vanilla.component.entity.misc.MetadataComponent;
 import org.spout.vanilla.data.Metadata;
 import org.spout.vanilla.data.VanillaData;
 import org.spout.vanilla.inventory.entity.HorseInventory;
-import org.spout.vanilla.protocol.entity.creature.CreatureProtocol;
-import org.spout.vanilla.protocol.entity.creature.CreatureType;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureProtocol;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureType;
 
 public class Horse extends Animal implements Container, Passive, Tameable {
 	public static final int DEFAULT_HEALTH = 22;

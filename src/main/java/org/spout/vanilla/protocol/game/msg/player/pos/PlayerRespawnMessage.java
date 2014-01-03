@@ -35,19 +35,18 @@ import org.spout.vanilla.protocol.game.msg.VanillaMainChannelMessage;
 
 public final class PlayerRespawnMessage extends VanillaMainChannelMessage {
 	private final byte difficulty, mode;
-	private final int worldHeight, dimension;
+	private final int dimension;
 	private final String worldType;
 
-	public PlayerRespawnMessage(int dimension, byte difficulty, byte mode, int worldHeight, String worldType) {
+	public PlayerRespawnMessage(int dimension, byte difficulty, byte mode, String worldType) {
 		this.dimension = dimension;
 		this.difficulty = difficulty;
 		this.mode = mode;
-		this.worldHeight = worldHeight;
 		this.worldType = worldType;
 	}
 
 	public PlayerRespawnMessage() {
-		this(0, (byte) 0, (byte) 0, 0, "");
+		this(0, (byte) 0, (byte) 0, "");
 	}
 
 	public int getDimension() {
@@ -62,10 +61,6 @@ public final class PlayerRespawnMessage extends VanillaMainChannelMessage {
 		return mode;
 	}
 
-	public int getWorldHeight() {
-		return worldHeight;
-	}
-
 	public String getWorldType() {
 		return worldType;
 	}
@@ -75,7 +70,6 @@ public final class PlayerRespawnMessage extends VanillaMainChannelMessage {
 		return new ToStringBuilder(this, SpoutToStringStyle.INSTANCE)
 				.append("difficulty", difficulty)
 				.append("mode", mode)
-				.append("worldHeight", worldHeight)
 				.append("dimension", dimension)
 				.append("worldType", worldType)
 				.toString();
@@ -93,7 +87,6 @@ public final class PlayerRespawnMessage extends VanillaMainChannelMessage {
 		return new org.apache.commons.lang3.builder.EqualsBuilder()
 				.append(this.difficulty, other.difficulty)
 				.append(this.mode, other.mode)
-				.append(this.worldHeight, other.worldHeight)
 				.append(this.dimension, other.dimension)
 				.append(this.worldType, other.worldType)
 				.isEquals();
@@ -104,7 +97,6 @@ public final class PlayerRespawnMessage extends VanillaMainChannelMessage {
 		return new org.apache.commons.lang3.builder.HashCodeBuilder()
 				.append(this.difficulty)
 				.append(this.mode)
-				.append(this.worldHeight)
 				.append(this.dimension)
 				.append(worldType)
 				.toHashCode();

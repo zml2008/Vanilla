@@ -38,16 +38,15 @@ import org.spout.api.util.Parameter;
 
 import org.spout.vanilla.protocol.VanillaByteBufUtils;
 import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityMobMessage;
-import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityMobMessage;
 
 public final class EntityMobCodec extends MessageCodec<EntityMobMessage> {
 	public EntityMobCodec() {
-		super(EntityMobMessage.class, 0x18);
+		super(EntityMobMessage.class, -1, 0x0F);
 	}
 
 	@Override
 	public EntityMobMessage decode(ByteBuf buffer) throws IOException {
-		int id = buffer.readInt();
+		int id = VanillaByteBufUtils.readVarInt(buffer);
 		int type = buffer.readUnsignedByte();
 		int x = buffer.readInt();
 		int y = buffer.readInt();
@@ -65,7 +64,7 @@ public final class EntityMobCodec extends MessageCodec<EntityMobMessage> {
 	@Override
 	public ByteBuf encode(EntityMobMessage message) throws IOException {
 		ByteBuf buffer = Unpooled.buffer();
-		buffer.writeInt(message.getEntityId());
+		VanillaByteBufUtils.writeVarInt(buffer, message.getEntityId());
 		buffer.writeByte(message.getType());
 		buffer.writeInt(message.getX());
 		buffer.writeInt(message.getY());

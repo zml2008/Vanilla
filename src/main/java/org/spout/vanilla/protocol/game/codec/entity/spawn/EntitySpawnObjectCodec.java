@@ -34,18 +34,18 @@ import io.netty.buffer.Unpooled;
 import org.spout.api.protocol.MessageCodec;
 import org.spout.api.protocol.reposition.NullRepositionManager;
 
-import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityObjectMessage;
+import org.spout.vanilla.protocol.VanillaByteBufUtils;
 import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityObjectMessage;
 
 public final class EntitySpawnObjectCodec extends MessageCodec<EntityObjectMessage> {
 	public EntitySpawnObjectCodec() {
-		super(EntityObjectMessage.class, 0x17);
+		super(EntityObjectMessage.class, -1, 0x0E);
 	}
 
 	@Override
 	public EntityObjectMessage decode(ByteBuf buffer) throws IOException {
 		//TODO: There's 2 new bytes. Currently unknown according to wiki.vg 17/12/2012
-		int entityId = buffer.readInt();
+		int entityId = VanillaByteBufUtils.readVarInt(buffer);
 		byte type = buffer.readByte();
 		int x = buffer.readInt();
 		int y = buffer.readInt();
@@ -65,7 +65,7 @@ public final class EntitySpawnObjectCodec extends MessageCodec<EntityObjectMessa
 	@Override
 	public ByteBuf encode(EntityObjectMessage message) throws IOException {
 		ByteBuf buffer = Unpooled.buffer(message.getThrowerId() > 0 ? 29 : 23);
-		buffer.writeInt(message.getEntityId());
+		VanillaByteBufUtils.writeVarInt(buffer, message.getEntityId());
 		buffer.writeByte(message.getType());
 		buffer.writeInt(message.getX());
 		buffer.writeInt(message.getY());

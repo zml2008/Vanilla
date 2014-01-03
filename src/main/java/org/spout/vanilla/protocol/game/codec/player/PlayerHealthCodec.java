@@ -37,7 +37,7 @@ import org.spout.vanilla.protocol.game.msg.player.PlayerHealthMessage;
 
 public final class PlayerHealthCodec extends MessageCodec<PlayerHealthMessage> {
 	public PlayerHealthCodec() {
-		super(PlayerHealthMessage.class, 0x08);
+		super(PlayerHealthMessage.class, 0x06);
 	}
 
 	@Override

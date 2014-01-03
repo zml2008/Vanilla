@@ -42,8 +42,8 @@ import org.spout.vanilla.data.Metadata;
 import org.spout.vanilla.data.VanillaData;
 import org.spout.vanilla.material.VanillaBlockMaterial;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.protocol.entity.object.ObjectEntityProtocol;
-import org.spout.vanilla.protocol.entity.object.ObjectType;
+import org.spout.vanilla.protocol.game.entity.object.ObjectEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.ObjectType;
 
 public class Minecart extends VehicleSubstance {
 	@Override
@@ -147,7 +147,7 @@ public class Minecart extends VehicleSubstance {
 
 	/**
 	 * Sets the Minecart Type component of this Minecart
-	 * 
+	 *
 	 * @param type to set to
 	 */
 	public <T extends MinecartType> T setType(Class<T> type) {
@@ -156,7 +156,7 @@ public class Minecart extends VehicleSubstance {
 
 	/**
 	 * Gets the Minecart Type component of this Minecart
-	 * 
+	 *
 	 * @return Minecart Type
 	 */
 	public MinecartType getType() {

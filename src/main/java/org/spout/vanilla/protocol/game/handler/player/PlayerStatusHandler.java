@@ -26,8 +26,6 @@
  */
 package org.spout.vanilla.protocol.game.handler.player;
 
-import java.util.Set;
-
 import org.spout.api.Server;
 import org.spout.api.datatable.ManagedMap;
 import org.spout.api.entity.Player;
@@ -37,7 +35,6 @@ import org.spout.api.geo.discrete.Transform;
 import org.spout.api.protocol.MessageHandler;
 import org.spout.api.protocol.ServerSession;
 import org.spout.api.protocol.Session;
-import org.spout.api.protocol.event.EntityUpdateEvent;
 
 import org.spout.vanilla.component.entity.living.Human;
 import org.spout.vanilla.data.Difficulty;
@@ -48,10 +45,8 @@ import org.spout.vanilla.data.WorldType;
 import org.spout.vanilla.event.cause.HealthChangeCause;
 import org.spout.vanilla.event.player.PlayerRespawnEvent;
 import org.spout.vanilla.protocol.VanillaProtocol;
-import org.spout.vanilla.protocol.game.msg.player.conn.PlayerLoginRequestMessage;
+import org.spout.vanilla.protocol.game.msg.player.conn.PlayerJoinGameMessage;
 import org.spout.vanilla.protocol.game.msg.player.PlayerStatusMessage;
-import org.spout.vanilla.protocol.game.msg.player.conn.PlayerLoginRequestMessage;
-import org.spout.vanilla.protocol.game.msg.player.pos.PlayerSpawnPositionMessage;
 
 public class PlayerStatusHandler extends MessageHandler<PlayerStatusMessage> {
 	@Override
@@ -75,7 +70,7 @@ public class PlayerStatusHandler extends MessageHandler<PlayerStatusMessage> {
 
 			//  MC Packet Order: 0x01 Login, 0xFA Custom (ServerTypeName), 0x06 SpawnPos, 0xCA PlayerAbilities, 0x10 BlockSwitch
 			gamemode = data.get(VanillaData.GAMEMODE);
-			final PlayerLoginRequestMessage idMsg = new PlayerLoginRequestMessage(entityId, worldType.toString(), gamemode.getId(), (byte) dimension.getId(), difficulty.getId(), (byte) server.getMaxPlayers());
+			final PlayerJoinGameMessage idMsg = new PlayerJoinGameMessage(entityId, worldType.toString(), gamemode.getId(), (byte) dimension.getId(), difficulty.getId(), (byte) server.getMaxPlayers());
 			session.send(Session.SendType.FORCE, idMsg);
 			session.setState(Session.State.GAME);
 			if (human.getAttachedCount() <= 1) {

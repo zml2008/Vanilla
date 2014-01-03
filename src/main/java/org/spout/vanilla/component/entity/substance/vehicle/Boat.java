@@ -35,8 +35,8 @@ import org.spout.api.util.Parameter;
 import org.spout.vanilla.component.entity.substance.Substance;
 import org.spout.vanilla.event.entity.network.EntityMetaChangeEvent;
 import org.spout.vanilla.protocol.VanillaByteBufUtils;
-import org.spout.vanilla.protocol.entity.object.ObjectEntityProtocol;
-import org.spout.vanilla.protocol.entity.object.ObjectType;
+import org.spout.vanilla.protocol.game.entity.object.ObjectEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.ObjectType;
 
 public class Boat extends Substance {
 	private BlockFace direction = BlockFace.NORTH;

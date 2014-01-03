@@ -26,7 +26,7 @@
  */
 package org.spout.vanilla.component.entity.substance;
 
-import org.spout.vanilla.protocol.entity.object.LightningEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.LightningEntityProtocol;
 
 public class Lightning extends Substance {
 	private int timeLeft = 20;

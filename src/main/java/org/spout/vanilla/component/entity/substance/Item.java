@@ -41,7 +41,7 @@ import org.spout.vanilla.data.Metadata;
 import org.spout.vanilla.data.VanillaData;
 import org.spout.vanilla.data.configuration.VanillaConfiguration;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.protocol.entity.object.ItemEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.ItemEntityProtocol;
 
 public class Item extends Substance {
 	/**

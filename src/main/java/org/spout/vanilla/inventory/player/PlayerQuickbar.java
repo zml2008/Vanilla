@@ -31,7 +31,7 @@ import org.spout.api.inventory.ItemStack;
 
 import org.spout.vanilla.event.entity.network.EntityEquipmentEvent;
 import org.spout.vanilla.inventory.entity.QuickbarInventory;
-import org.spout.vanilla.protocol.msg.entity.EntityEquipmentMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityEquipmentMessage;
 
 public class PlayerQuickbar extends QuickbarInventory {
 	private static final long serialVersionUID = 1L;

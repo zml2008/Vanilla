@@ -56,7 +56,7 @@ import org.spout.vanilla.inventory.player.PlayerCraftingInventory;
 import org.spout.vanilla.inventory.player.PlayerMainInventory;
 import org.spout.vanilla.inventory.player.PlayerQuickbar;
 import org.spout.vanilla.material.block.component.FurnaceBlock;
-import org.spout.vanilla.protocol.entity.creature.CreatureType;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureType;
 
 /**
  * * Common Vanilla-like data mappings that are found in Vanilla.

@@ -30,8 +30,8 @@ import org.spout.api.entity.Entity;
 
 import org.spout.vanilla.data.VanillaData;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.protocol.entity.object.ObjectEntityProtocol;
-import org.spout.vanilla.protocol.entity.object.ObjectType;
+import org.spout.vanilla.protocol.game.entity.object.ObjectEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.ObjectType;
 import org.spout.vanilla.util.explosion.ExplosionModel;
 import org.spout.vanilla.util.explosion.ExplosionModelSpherical;
 

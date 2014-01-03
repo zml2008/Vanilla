@@ -46,9 +46,8 @@ public final class PlayerRespawnCodec extends MessageCodec<PlayerRespawnMessage>
 		int dimension = buffer.readInt();
 		byte difficulty = buffer.readByte();
 		byte creative = buffer.readByte();
-		int height = buffer.readUnsignedShort();
 		String worldType = VanillaByteBufUtils.readString(buffer);
-		return new PlayerRespawnMessage(dimension, difficulty, creative, height, worldType);
+		return new PlayerRespawnMessage(dimension, difficulty, creative, worldType);
 	}
 
 	@Override
@@ -56,7 +55,6 @@ public final class PlayerRespawnCodec extends MessageCodec<PlayerRespawnMessage>
 		ByteBuf buffer = Unpooled.buffer();
 		buffer.writeInt(message.getDimension());
 		buffer.writeByte(message.getDifficulty());
-		buffer.writeByte(message.getGameMode());
 		buffer.writeShort(message.getWorldHeight());
 		VanillaByteBufUtils.writeString(buffer, message.getWorldType());
 		return buffer;

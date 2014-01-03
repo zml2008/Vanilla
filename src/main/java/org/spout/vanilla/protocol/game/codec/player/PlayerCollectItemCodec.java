@@ -34,11 +34,10 @@ import io.netty.buffer.Unpooled;
 import org.spout.api.protocol.MessageCodec;
 
 import org.spout.vanilla.protocol.game.msg.player.PlayerCollectItemMessage;
-import org.spout.vanilla.protocol.game.msg.player.PlayerCollectItemMessage;
 
 public final class PlayerCollectItemCodec extends MessageCodec<PlayerCollectItemMessage> {
 	public PlayerCollectItemCodec() {
-		super(PlayerCollectItemMessage.class, 0x16);
+		super(PlayerCollectItemMessage.class, -1, 0x0D);
 	}
 
 	@Override

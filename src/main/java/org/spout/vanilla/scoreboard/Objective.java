@@ -35,7 +35,7 @@ import org.spout.api.util.Named;
 import org.spout.vanilla.event.scoreboard.ObjectiveActionEvent;
 import org.spout.vanilla.event.scoreboard.ObjectiveDisplayEvent;
 import org.spout.vanilla.event.scoreboard.ScoreUpdateEvent;
-import org.spout.vanilla.protocol.msg.scoreboard.ScoreboardObjectiveMessage;
+import org.spout.vanilla.protocol.game.msg.scoreboard.ScoreboardObjectiveMessage;
 
 /**
  * Represents a objective belonging to a scoreboard.

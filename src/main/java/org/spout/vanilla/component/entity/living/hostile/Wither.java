@@ -40,8 +40,8 @@ import org.spout.vanilla.data.effect.EntityEffect;
 import org.spout.vanilla.data.effect.EntityEffectType;
 import org.spout.vanilla.event.cause.HealthChangeCause;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.protocol.entity.creature.CreatureProtocol;
-import org.spout.vanilla.protocol.entity.creature.CreatureType;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureProtocol;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureType;
 
 /**
  * A component that identifies the entity as a Wither.

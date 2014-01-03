@@ -36,16 +36,15 @@ import org.spout.api.protocol.reposition.NullRepositionManager;
 
 import org.spout.vanilla.protocol.VanillaByteBufUtils;
 import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityPaintingMessage;
-import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityPaintingMessage;
 
 public final class EntityPaintingCodec extends MessageCodec<EntityPaintingMessage> {
 	public EntityPaintingCodec() {
-		super(EntityPaintingMessage.class, 0x19);
+		super(EntityPaintingMessage.class, -1, 0x10);
 	}
 
 	@Override
 	public EntityPaintingMessage decode(ByteBuf buffer) throws IOException {
-		int id = buffer.readInt();
+		int id = VanillaByteBufUtils.readVarInt(buffer);
 		String title = VanillaByteBufUtils.readString(buffer);
 		int x = buffer.readInt();
 		int y = buffer.readInt();
@@ -57,7 +56,7 @@ public final class EntityPaintingCodec extends MessageCodec<EntityPaintingMessag
 	@Override
 	public ByteBuf encode(EntityPaintingMessage message) throws IOException {
 		ByteBuf buffer = Unpooled.buffer();
-		buffer.writeInt(message.getEntityId());
+		VanillaByteBufUtils.writeVarInt(buffer, message.getEntityId());
 		VanillaByteBufUtils.writeString(buffer, message.getTitle());
 		buffer.writeInt(message.getX());
 		buffer.writeInt(message.getY());

@@ -27,7 +27,7 @@
 package org.spout.vanilla.component.entity.substance;
 
 import org.spout.vanilla.data.VanillaData;
-import org.spout.vanilla.protocol.entity.object.XPOrbEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.XPOrbEntityProtocol;
 
 public class XPOrb extends Substance {
 	@Override

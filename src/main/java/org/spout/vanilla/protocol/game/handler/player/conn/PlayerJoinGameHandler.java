@@ -24,51 +24,21 @@
  * License and see <http://spout.in/licensev1> for the full license, including
  * the MIT license.
  */
-package org.spout.vanilla.protocol.msg.player;
+package org.spout.vanilla.protocol.game.handler.player.conn;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.spout.api.protocol.ClientSession;
+import org.spout.api.protocol.MessageHandler;
 
-import org.spout.api.util.SpoutToStringStyle;
+import org.spout.vanilla.component.entity.living.Human;
+import org.spout.vanilla.data.GameMode;
+import org.spout.vanilla.protocol.game.msg.player.conn.PlayerJoinGameMessage;
 
-import org.spout.vanilla.protocol.msg.VanillaMainChannelMessage;
-
-public final class PlayerHeldItemChangeMessage extends VanillaMainChannelMessage {
-	private final int slot;
-
-	public PlayerHeldItemChangeMessage(int slot) {
-		this.slot = slot;
-	}
-
-	public int getSlot() {
-		return slot;
-	}
-
+public class PlayerJoinGameHandler extends MessageHandler<PlayerJoinGameMessage> {
 	@Override
-	public String toString() {
-		return new ToStringBuilder(this, SpoutToStringStyle.INSTANCE)
-				.append("slot", slot)
-				.toString();
-	}
+	public void handleClient(ClientSession session, PlayerJoinGameMessage message) {
+		System.out.println(message.toString());
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final PlayerHeldItemChangeMessage other = (PlayerHeldItemChangeMessage) obj;
-		return new org.apache.commons.lang3.builder.EqualsBuilder()
-				.append(this.slot, other.slot)
-				.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new org.apache.commons.lang3.builder.HashCodeBuilder()
-				.append(this.slot)
-				.toHashCode();
+		Human human = session.getPlayer().add(Human.class);
+		human.setGamemode(GameMode.get(message.getGameMode()));
 	}
 }

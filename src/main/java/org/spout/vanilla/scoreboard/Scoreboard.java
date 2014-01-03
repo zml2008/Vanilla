@@ -36,8 +36,8 @@ import org.spout.api.event.ProtocolEvent;
 import org.spout.vanilla.component.entity.VanillaEntityComponent;
 import org.spout.vanilla.event.scoreboard.ObjectiveActionEvent;
 import org.spout.vanilla.event.scoreboard.TeamActionEvent;
-import org.spout.vanilla.protocol.msg.scoreboard.ScoreboardObjectiveMessage;
-import org.spout.vanilla.protocol.msg.scoreboard.ScoreboardTeamMessage;
+import org.spout.vanilla.protocol.game.msg.scoreboard.ScoreboardObjectiveMessage;
+import org.spout.vanilla.protocol.game.msg.scoreboard.ScoreboardTeamMessage;
 
 /**
  * Represents a collection of objective attached to a player.

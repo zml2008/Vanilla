@@ -33,17 +33,17 @@ import io.netty.buffer.Unpooled;
 
 import org.spout.api.protocol.MessageCodec;
 
-import org.spout.vanilla.protocol.game.msg.entity.pos.EntityVelocityMessage;
+import org.spout.vanilla.protocol.VanillaByteBufUtils;
 import org.spout.vanilla.protocol.game.msg.entity.pos.EntityVelocityMessage;
 
 public final class EntityVelocityCodec extends MessageCodec<EntityVelocityMessage> {
 	public EntityVelocityCodec() {
-		super(EntityVelocityMessage.class, 0x1C);
+		super(EntityVelocityMessage.class, -1, 0x12);
 	}
 
 	@Override
 	public EntityVelocityMessage decode(ByteBuf buffer) throws IOException {
-		int id = buffer.readInt();
+		int id = VanillaByteBufUtils.readVarInt(buffer);
 		int vx = buffer.readUnsignedShort();
 		int vy = buffer.readUnsignedShort();
 		int vz = buffer.readUnsignedShort();

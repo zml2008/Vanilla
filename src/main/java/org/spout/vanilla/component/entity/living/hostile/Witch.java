@@ -35,8 +35,8 @@ import org.spout.vanilla.component.entity.living.Living;
 import org.spout.vanilla.component.entity.misc.DeathDrops;
 import org.spout.vanilla.component.entity.misc.Health;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.protocol.entity.creature.CreatureProtocol;
-import org.spout.vanilla.protocol.entity.creature.CreatureType;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureProtocol;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureType;
 
 /**
  * A component that identifies the entity as a CaveSpider.
@@ -62,12 +62,12 @@ public class Witch extends Living implements Hostile {
 
 		/*
 		 * TODO:
-		 * 
-		 * The witch mob uses splash potions of poison, weakness, damage, and slowness to fight the player. 
-		 * The current order of potions thrown is; slowness, poison, they will then proceed to throw potions of 
-		 * harming until the player is no longer poisoned which they will rectify by throwing another splash 
-		 * potion of poison and will continue to do this. The splash potion of harming will occasionally be 
-		 * substituted by potions of slowness. These potions will affect other mobs - not just the player. 
+		 *
+		 * The witch mob uses splash potions of poison, weakness, damage, and slowness to fight the player.
+		 * The current order of potions thrown is; slowness, poison, they will then proceed to throw potions of
+		 * harming until the player is no longer poisoned which they will rectify by throwing another splash
+		 * potion of poison and will continue to do this. The splash potion of harming will occasionally be
+		 * substituted by potions of slowness. These potions will affect other mobs - not just the player.
 		 */
 	}
 }

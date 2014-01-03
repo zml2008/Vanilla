@@ -45,7 +45,7 @@ import org.spout.vanilla.event.player.network.PlayerHealthEvent;
 import org.spout.vanilla.material.block.liquid.Water;
 import org.spout.vanilla.material.item.Food;
 import org.spout.vanilla.material.item.potion.PotionItem;
-import org.spout.vanilla.protocol.msg.entity.EntityStatusMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityStatusMessage;
 
 /**
  * Component to handle everything related to the hunger system. It controls the Hunger level, the food saturation value, the exhaustion value and the eating process.

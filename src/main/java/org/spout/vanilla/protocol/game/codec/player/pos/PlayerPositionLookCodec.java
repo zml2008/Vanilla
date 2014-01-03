@@ -35,23 +35,21 @@ import org.spout.api.protocol.MessageCodec;
 import org.spout.api.protocol.reposition.NullRepositionManager;
 
 import org.spout.vanilla.protocol.game.msg.player.pos.PlayerPositionLookMessage;
-import org.spout.vanilla.protocol.game.msg.player.pos.PlayerPositionLookMessage;
 
 public final class PlayerPositionLookCodec extends MessageCodec<PlayerPositionLookMessage> {
 	public PlayerPositionLookCodec() {
-		super(PlayerPositionLookMessage.class, 0x0D);
+		super(PlayerPositionLookMessage.class, 0x08);
 	}
 
 	@Override
 	public PlayerPositionLookMessage decode(ByteBuf buffer) throws IOException {
 		double x = buffer.readDouble();
 		double y = buffer.readDouble();
-		double stance = buffer.readDouble();
 		double z = buffer.readDouble();
 		float yaw = -buffer.readFloat();
 		float pitch = buffer.readFloat();
 		boolean onGround = buffer.readByte() == 1;
-		return new PlayerPositionLookMessage(x, y, z, stance, yaw, pitch, onGround, NullRepositionManager.getInstance());
+		return new PlayerPositionLookMessage(x, y, z, yaw, pitch, onGround, NullRepositionManager.getInstance());
 	}
 
 	@Override
@@ -59,7 +57,6 @@ public final class PlayerPositionLookCodec extends MessageCodec<PlayerPositionLo
 		ByteBuf buffer = Unpooled.buffer(41);
 		buffer.writeDouble(message.getX());
 		buffer.writeDouble(message.getY());
-		buffer.writeDouble(message.getStance());
 		buffer.writeDouble(message.getZ());
 		buffer.writeFloat(-message.getYaw());
 		buffer.writeFloat(message.getPitch());

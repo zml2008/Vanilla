@@ -85,7 +85,7 @@ import org.spout.vanilla.event.player.PlayerDeathEvent;
 import org.spout.vanilla.material.block.redstone.RedstoneSource;
 import org.spout.vanilla.protocol.ClientAuthentification;
 import org.spout.vanilla.protocol.PasteExceptionHandler;
-import org.spout.vanilla.protocol.entity.PlayerEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.PlayerEntityProtocol;
 
 public class VanillaListener implements Listener {
 	private final VanillaPlugin plugin;
@@ -260,7 +260,7 @@ public class VanillaListener implements Listener {
 
 			if (!node.SPAWN_MONSTERS.getBoolean()) {
 				if (mob instanceof Aggressive) {
-					event.setCancelled(true);	
+					event.setCancelled(true);
 				}
 			}
 		}

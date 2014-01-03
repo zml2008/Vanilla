@@ -33,25 +33,25 @@ import io.netty.buffer.Unpooled;
 
 import org.spout.api.protocol.MessageCodec;
 
-import org.spout.vanilla.protocol.game.msg.entity.EntityAnimationMessage;
+import org.spout.vanilla.protocol.VanillaByteBufUtils;
 import org.spout.vanilla.protocol.game.msg.entity.EntityAnimationMessage;
 
 public final class EntityAnimationCodec extends MessageCodec<EntityAnimationMessage> {
 	public EntityAnimationCodec() {
-		super(EntityAnimationMessage.class, 0x12);
+		super(EntityAnimationMessage.class, -1, 0x0B);
 	}
 
 	@Override
 	public EntityAnimationMessage decode(ByteBuf buffer) throws IOException {
-		int id = buffer.readInt();
+		int id = VanillaByteBufUtils.readVarInt(buffer);
 		byte animation = buffer.readByte();
 		return new EntityAnimationMessage(id, animation);
 	}
 
 	@Override
 	public ByteBuf encode(EntityAnimationMessage message) throws IOException {
-		ByteBuf buffer = Unpooled.buffer(5);
-		buffer.writeInt(message.getEntityId());
+		ByteBuf buffer = Unpooled.buffer(2);
+		VanillaByteBufUtils.writeVarInt(buffer, message.getEntityId());
 		buffer.writeByte(message.getAnimationId());
 		return buffer;
 	}

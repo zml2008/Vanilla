@@ -33,18 +33,16 @@ import org.spout.api.util.SpoutToStringStyle;
 
 import org.spout.math.vector.Vector3;
 import org.spout.vanilla.protocol.game.msg.VanillaMainChannelMessage;
-import org.spout.vanilla.protocol.game.msg.VanillaMainChannelMessage;
 
 public final class PlayerPositionMessage extends VanillaMainChannelMessage {
-	private final double x, y, z, stance;
+	private final double x, y, z;
 	private final boolean onGround;
 	private final long creationTimestamp = System.nanoTime();
 
-	public PlayerPositionMessage(double x, double y, double z, double stance, boolean onGround, RepositionManager rm) {
+	public PlayerPositionMessage(double x, double y, double z, boolean onGround, RepositionManager rm) {
 		this.x = rm.convertX(x);
 		this.y = rm.convertY(y);
 		this.z = rm.convertZ(z);
-		this.stance = stance;
 		this.onGround = onGround;
 	}
 
@@ -64,10 +62,6 @@ public final class PlayerPositionMessage extends VanillaMainChannelMessage {
 		return new Vector3(x, y, z);
 	}
 
-	public double getStance() {
-		return stance;
-	}
-
 	public boolean isOnGround() {
 		return onGround;
 	}
@@ -78,7 +72,6 @@ public final class PlayerPositionMessage extends VanillaMainChannelMessage {
 				.append("x", x)
 				.append("y", y)
 				.append("z", z)
-				.append("stance", stance)
 				.append("onGround", onGround)
 				.toString();
 	}
@@ -96,7 +89,6 @@ public final class PlayerPositionMessage extends VanillaMainChannelMessage {
 				.append(this.x, other.x)
 				.append(this.y, other.y)
 				.append(this.z, other.z)
-				.append(this.stance, other.stance)
 				.append(this.onGround, other.onGround)
 				.isEquals();
 	}
@@ -107,7 +99,6 @@ public final class PlayerPositionMessage extends VanillaMainChannelMessage {
 				.append(this.x)
 				.append(this.y)
 				.append(this.z)
-				.append(this.stance)
 				.append(this.onGround)
 				.toHashCode();
 	}

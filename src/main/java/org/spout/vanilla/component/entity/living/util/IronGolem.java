@@ -37,8 +37,8 @@ import org.spout.vanilla.component.entity.misc.Health;
 import org.spout.vanilla.component.entity.misc.MetadataComponent;
 import org.spout.vanilla.data.VanillaData;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.protocol.entity.creature.CreatureProtocol;
-import org.spout.vanilla.protocol.entity.creature.CreatureType;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureProtocol;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureType;
 
 /**
  * A component that identifies the entity as a IronGolem.

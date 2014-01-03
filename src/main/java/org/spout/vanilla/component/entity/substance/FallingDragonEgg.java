@@ -26,8 +26,8 @@
  */
 package org.spout.vanilla.component.entity.substance;
 
-import org.spout.vanilla.protocol.entity.object.ObjectEntityProtocol;
-import org.spout.vanilla.protocol.entity.object.ObjectType;
+import org.spout.vanilla.protocol.game.entity.object.ObjectEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.ObjectType;
 
 public class FallingDragonEgg extends Substance {
 	public static final int ID = 74;

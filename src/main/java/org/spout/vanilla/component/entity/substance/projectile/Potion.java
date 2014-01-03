@@ -33,7 +33,7 @@ import org.spout.api.geo.discrete.Point;
 import org.spout.vanilla.component.entity.substance.Substance;
 import org.spout.vanilla.data.effect.store.GeneralEffects;
 import org.spout.vanilla.material.item.potion.PotionItem;
-import org.spout.vanilla.protocol.entity.object.PotionEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.PotionEntityProtocol;
 
 public class Potion extends Substance implements Projectile {
 	private Entity shooter;

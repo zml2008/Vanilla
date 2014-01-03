@@ -41,8 +41,8 @@ import org.spout.vanilla.data.Metadata;
 import org.spout.vanilla.data.VanillaData;
 import org.spout.vanilla.inventory.player.CraftingInventory;
 import org.spout.vanilla.inventory.window.Window;
-import org.spout.vanilla.protocol.entity.creature.CreatureProtocol;
-import org.spout.vanilla.protocol.entity.creature.CreatureType;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureProtocol;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureType;
 
 /**
  * A component that identifies the entity as a Villager.

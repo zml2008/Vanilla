@@ -32,7 +32,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import org.spout.api.util.SpoutToStringStyle;
 
-import org.spout.vanilla.protocol.msg.VanillaMainChannelMessage;
+import org.spout.vanilla.protocol.game.msg.VanillaMainChannelMessage;
 
 /**
  * Base class for messages passed through the rcon protocol

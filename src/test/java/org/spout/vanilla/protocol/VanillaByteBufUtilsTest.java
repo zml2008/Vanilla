@@ -41,11 +41,7 @@ import org.spout.vanilla.EngineFaker;
 import org.spout.vanilla.material.VanillaMaterials;
 
 import static org.junit.Assert.assertEquals;
-
-import static org.spout.vanilla.protocol.VanillaByteBufUtils.readParameters;
-import static org.spout.vanilla.protocol.VanillaByteBufUtils.readString;
-import static org.spout.vanilla.protocol.VanillaByteBufUtils.writeParameters;
-import static org.spout.vanilla.protocol.VanillaByteBufUtils.writeString;
+import static org.spout.vanilla.protocol.VanillaByteBufUtils.*;
 
 public class VanillaByteBufUtilsTest {
 	public static final List<Parameter<?>> TEST_PARAMS = new ArrayList<Parameter<?>>();
@@ -75,5 +71,17 @@ public class VanillaByteBufUtilsTest {
 		ByteBuf buf = Unpooled.buffer();
 		writeString(buf, TEST_STRING);
 		assertEquals(TEST_STRING, readString(buf));
+	}
+
+	private static final int[] TEST_VALS = new int[] {0, 1, 1024, 123456, Integer.MIN_VALUE, Integer.MAX_VALUE};
+	@Test
+	public void testVarInt() {
+		ByteBuf buf = Unpooled.buffer();
+		for (int i : TEST_VALS) {
+			buf.clear();
+			writeVarInt(buf, i);
+			assertEquals(i, readVarInt(buf));
+		}
+
 	}
 }

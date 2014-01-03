@@ -28,6 +28,7 @@ package org.spout.vanilla.protocol.game;
 
 import java.net.InetSocketAddress;
 
+import org.spout.api.protocol.CodecLookupService;
 import org.spout.api.protocol.Message;
 import org.spout.vanilla.protocol.VanillaProtocol;
 import org.spout.vanilla.protocol.game.codec.entity.EntityActionCodec;
@@ -72,9 +73,9 @@ import org.spout.vanilla.protocol.game.codec.player.PlayerStatusCodec;
 import org.spout.vanilla.protocol.game.codec.player.PlayerTabCompleteCodec;
 import org.spout.vanilla.protocol.game.codec.player.PlayerTimeCodec;
 import org.spout.vanilla.protocol.game.codec.player.PlayerUseEntityCodec;
+import org.spout.vanilla.protocol.game.codec.player.conn.PlayerJoinGameCodec;
 import org.spout.vanilla.protocol.game.codec.player.conn.PlayerKickCodec;
 import org.spout.vanilla.protocol.game.codec.player.conn.PlayerListCodec;
-import org.spout.vanilla.protocol.game.codec.player.conn.PlayerLoginRequestCodec;
 import org.spout.vanilla.protocol.game.codec.player.conn.PlayerPingCodec;
 import org.spout.vanilla.protocol.game.codec.player.pos.PlayerLookCodec;
 import org.spout.vanilla.protocol.game.codec.player.pos.PlayerPositionCodec;
@@ -151,9 +152,9 @@ import org.spout.vanilla.protocol.game.handler.player.PlayerStatusHandler;
 import org.spout.vanilla.protocol.game.handler.player.PlayerTabCompleteHandler;
 import org.spout.vanilla.protocol.game.handler.player.PlayerTimeHandler;
 import org.spout.vanilla.protocol.game.handler.player.PlayerUseEntityHandler;
+import org.spout.vanilla.protocol.game.handler.player.conn.PlayerJoinGameHandler;
 import org.spout.vanilla.protocol.game.handler.player.conn.PlayerKickHandler;
 import org.spout.vanilla.protocol.game.handler.player.conn.PlayerListHandler;
-import org.spout.vanilla.protocol.game.handler.player.conn.PlayerLoginRequestHandler;
 import org.spout.vanilla.protocol.game.handler.player.conn.PlayerPingHandler;
 import org.spout.vanilla.protocol.game.handler.player.pos.PlayerLookHandler;
 import org.spout.vanilla.protocol.game.handler.player.pos.PlayerPositionHandler;
@@ -207,161 +208,83 @@ public class VanillaGameProtocol extends VanillaProtocol {
 
 	private VanillaGameProtocol() {
 		super("Game", 512);
-		// THIS FORMATTING IS CORRECT NO MATTER WHAT ANY AUTOFORMATTER SAYS. DON'T CHANGE IT
-		/* 0x00 */
 		registerPacket(PlayerPingCodec.class, new PlayerPingHandler());
-		/* 0x01 */
-		registerPacket(PlayerLoginRequestCodec.class, new PlayerLoginRequestHandler());
-		/* 0x03 */
+		registerPacket(PlayerJoinGameCodec.class, new PlayerJoinGameHandler(), CodecLookupService.ProtocolSide.CLIENT);
 		registerPacket(PlayerChatCodec.class, new PlayerChatHandler());
-		/* 0x04 */
-		registerPacket(PlayerTimeCodec.class, new PlayerTimeHandler());
-		/* 0x05 */
+		registerPacket(PlayerTimeCodec.class, new PlayerTimeHandler(), CodecLookupService.ProtocolSide.CLIENT);
 		registerPacket(EntityEquipmentCodec.class, new EntityEquipmentHandler());
-		/* 0x06 */
 		registerPacket(PlayerSpawnPositionCodec.class, new PlayerSpawnPositionHandler());
-		/* 0x07 */
-		registerPacket(PlayerUseEntityCodec.class, new PlayerUseEntityHandler());
-		/* 0x08 */
+		//registerPacket(PlayerUseEntityCodec.class, new PlayerUseEntityHandler(), CodecLookupService.ProtocolSide.SERVER);
 		registerPacket(PlayerHealthCodec.class, new PlayerHealthHandler());
-		/* 0x09 */
 		registerPacket(PlayerRespawnCodec.class, new PlayerRespawnHandler());
-		/* 0x0A */
-		registerPacket(PlayerGroundCodec.class, new PlayerGroundHandler());
-		/* 0x0B */
-		registerPacket(PlayerPositionCodec.class, new PlayerPositionHandler());
-		/* 0x0C */
-		registerPacket(PlayerLookCodec.class, new PlayerLookHandler());
-		/* 0x0D */
+		//registerPacket(PlayerGroundCodec.class, new PlayerGroundHandler(), CodecLookupService.ProtocolSide.SERVER);
+		//registerPacket(PlayerPositionCodec.class, new PlayerPositionHandler(), CodecLookupService.ProtocolSide.SERVER);
+		//registerPacket(PlayerLookCodec.class, new PlayerLookHandler(), CodecLookupService.ProtocolSide.SERVER);
 		registerPacket(PlayerPositionLookCodec.class, new PlayerPositionLookHandler());
-		/* 0x0E */
-		registerPacket(PlayerDiggingCodec.class, new PlayerDiggingHandler());
-		/* 0x0F */
-		registerPacket(PlayerBlockPlacementCodec.class, new PlayerBlockPlacementHandler());
-		/* 0x10 */
+		//registerPacket(PlayerDiggingCodec.class, new PlayerDiggingHandler(), CodecLookupService.ProtocolSide.SERVER);
+		//registerPacket(PlayerBlockPlacementCodec.class, new PlayerBlockPlacementHandler(), CodecLookupService.ProtocolSide.SERVER);
 		registerPacket(PlayerHeldItemChangeCodec.class, new PlayerHeldItemChangeHandler());
-		/* 0x11 */
 		registerPacket(PlayerBedCodec.class, new PlayerBedHandler());
-		/* 0x12 */
 		registerPacket(EntityAnimationCodec.class, new EntityAnimationHandler());
-		/* 0x13 */
-		registerPacket(EntityActionCodec.class, new EntityActionHandler());
-		/* 0x14 */
-		registerPacket(PlayerSpawnCodec.class, new PlayerSpawnHandler());
-		/* 0x15 */ //registerPacket(EntityItemCodec.class, new EntityItemHandler()); // Removed as of 1.4.6
-		/* 0x16 */
+		registerPacket(PlayerSpawnCodec.class, new PlayerSpawnHandler(), CodecLookupService.ProtocolSide.CLIENT);
+		//registerPacket(EntityActionCodec.class, new EntityActionHandler());
+		 //registerPacket(EntityItemCodec.class, new EntityItemHandler()); // Removed as of 1.4.6
 		registerPacket(PlayerCollectItemCodec.class, new PlayerCollectItemHandler());
-		/* 0x17 */
 		registerPacket(EntitySpawnObjectCodec.class, new EntityObjectHandler());
-		/* 0x18 */
 		registerPacket(EntityMobCodec.class, new EntityMobHandler());
-		/* 0x19 */
 		registerPacket(EntityPaintingCodec.class, new EntityPaintingHandler());
-		/* 0x1A */
 		registerPacket(EntityExperienceOrbCodec.class, new EntityExperienceOrbHandler());
-		/* 0x1B */
-		registerPacket(SteerVehicleCodec.class, new SteerVehicleHandler());
-		/* 0x1C */
+		//registerPacket(SteerVehicleCodec.class, new SteerVehicleHandler());
 		registerPacket(EntityVelocityCodec.class, new EntityVelocityHandler());
-		/* 0x1D */
 		registerPacket(EntityDestroyCodec.class, new EntityDestroyHandler());
-		/* 0x1E */
 		registerPacket(EntityInitializeCodec.class, new EntityInitializeHandler()); //TODO the meaning of this packet is basically that the entity did not move/look since the last such packet. We need to implement this!
-		/* 0x1F */
 		registerPacket(EntityRelativePositionCodec.class, new EntityRelativePositionHandler());
-		/* 0x20 */
 		registerPacket(EntityYawCodec.class, new EntityYawHandler()); //TODO rename Entity Look on the minecraft protocol page
-		/* 0x21 */
 		registerPacket(EntityRelativePositionYawCodec.class, new EntityRelativePositionYawHandler());  //TODO same as above
-		/* 0x22 */
 		registerPacket(EntityTeleportCodec.class, new EntityTeleportHandler());
-		/* 0x23 */
 		registerPacket(EntityHeadYawCodec.class, new EntityHeadYawHandler()); //TODO same as above
-		/* 0x26 */
 		registerPacket(EntityStatusCodec.class, new EntityStatusHandler());
-		/* 0x27 */
 		registerPacket(EntityAttachEntityCodec.class, new EntityAttachEntityHandler());
-		/* 0x28 */
 		registerPacket(EntityMetadataCodec.class, new EntityMetadataHandler());
-		/* 0x29 */
 		registerPacket(EntityEffectCodec.class, new EntityEffectHandler());
-		/* 0x2A */
 		registerPacket(EntityRemoveEffectCodec.class, new EntityRemoveEffectHandler());
-		/* 0x2B */
 		registerPacket(PlayerExperienceCodec.class, new PlayerExperienceHandler());
-		/* 0x2C */
 		registerPacket(EntityPropertiesCodec.class, new EntityPropertiesHandler());
-		/* 0x33 */
 		registerPacket(ChunkDataCodec.class, new ChunkDataHandler()); //TODO rename on the minecraft protocol page
-		/* 0x34 */
 		registerPacket(BlockBulkCodec.class, new BlockBulkHandler());
-		/* 0x35 */
 		registerPacket(BlockChangeCodec.class, new BlockChangeHandler());
-		/* 0x36 */
 		registerPacket(BlockActionCodec.class, new BlockActionHandler());
-		/* 0x37 */
 		registerPacket(BlockBreakAnimationCodec.class, new BlockBreakAnimationHandler());
-		/* 0x38 */
 		registerPacket(ChunkBulkCodec.class, new ChunkBulkHandler());
-		/* 0x3C */
 		registerPacket(ExplosionCodec.class, new ExplosionHandler());
-		/* 0x3D */
 		registerPacket(EffectCodec.class, new EffectHandler());
-		/* 0x3E */
 		registerPacket(SoundEffectCodec.class, new SoundEffectHandler());
-		/* 0x3F */
 		registerPacket(ParticleEffectCodec.class, new ParticleEffectHandler());
-		/* 0x46 */
 		registerPacket(PlayerGameStateCodec.class, new PlayerGameStateHandler());
-		/* 0x47 */
 		registerPacket(EntityThunderboltCodec.class, new EntityThunderboltHandler()); //Minecraft protocol page -> Thunderbolt :/
-		/* 0x64 */
 		registerPacket(WindowOpenCodec.class, new WindowOpenHandler());
-		/* 0x65 */
 		registerPacket(WindowCloseCodec.class, new WindowCloseHandler());
-		/* 0x66 */
 		registerPacket(WindowClickCodec.class, new WindowClickHandler());
-		/* 0x67 */
 		registerPacket(WindowSlotCodec.class, new WindowSlotHandler());
-		/* 0x68 */
 		registerPacket(WindowItemsCodec.class, new WindowItemsHandler());
-		/* 0x69 */
 		registerPacket(WindowPropertyCodec.class, new WindowPropertyHandler()); //Update Window Property on the protocol page!
-		/* 0x6A */
 		registerPacket(WindowTransactionCodec.class, new WindowTransactionHandler());
-		/* 0x6B */
 		registerPacket(WindowCreativeActionCodec.class, new WindowCreativeActionHandler());
-		/* 0x6C */
 		registerPacket(WindowEnchantItemCodec.class, new WindowEnchantItemHandler());
-		/* 0x82 */
 		registerPacket(SignCodec.class, new SignHandler());
-		/* 0x83 */
 		registerPacket(EntityItemDataCodec.class, new EntityItemDataHandler());
-		/* 0x84 */
 		registerPacket(EntityTileDataCodec.class, new EntityTileDataHandler()); //Update Tile Entity...
-		/* 0xC8 */
 		registerPacket(PlayerStatisticCodec.class, new PlayerStatisticHandler());
-		/* 0xC9 */
 		registerPacket(PlayerListCodec.class, new PlayerListHandler());
-		/* 0xCA */
 		registerPacket(PlayerAbilityCodec.class, new PlayerAbilityHandler());
-		/* 0xCB */
 		registerPacket(PlayerTabCompleteCodec.class, new PlayerTabCompleteHandler());
-		/* 0xCC */
 		registerPacket(PlayerLocaleViewDistanceCodec.class, new PlayerLocaleViewDistanceHandler());
-		/* 0xCD */
 		registerPacket(PlayerStatusCodec.class, new PlayerStatusHandler());
-		/* 0xCE */
 		registerPacket(ScoreboardObjectiveCodec.class, new ScoreboardObjectiveHandler());
-		/* 0xCF */
 		registerPacket(ScoreboardScoreCodec.class, new ScoreboardScoreHandler());
-		/* 0xD0 */
 		registerPacket(ScoreboardDisplayCodec.class, new ScoreboardDisplayHandler());
-		/* 0xD1 */
 		registerPacket(ScoreboardTeamCodec.class, new ScoreboardTeamHandler());
-		/* 0xFA */
 		registerPacket(ServerPluginCodec.class, new ServerPluginHandler());
-		/* 0xFF */
 		registerPacket(PlayerKickCodec.class, new PlayerKickHandler());
 		/* PacketFA wrapped packets */
 		registerPacket(RegisterPluginChannelCodec.class, new RegisterPluginChannelMessageHandler());

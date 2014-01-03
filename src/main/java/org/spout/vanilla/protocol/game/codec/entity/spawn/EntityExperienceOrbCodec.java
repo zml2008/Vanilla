@@ -34,17 +34,17 @@ import io.netty.buffer.Unpooled;
 import org.spout.api.protocol.MessageCodec;
 import org.spout.api.protocol.reposition.NullRepositionManager;
 
-import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityExperienceOrbMessage;
+import org.spout.vanilla.protocol.VanillaByteBufUtils;
 import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityExperienceOrbMessage;
 
 public class EntityExperienceOrbCodec extends MessageCodec<EntityExperienceOrbMessage> {
 	public EntityExperienceOrbCodec() {
-		super(EntityExperienceOrbMessage.class, 0x1A);
+		super(EntityExperienceOrbMessage.class, -1, 0x11);
 	}
 
 	@Override
 	public EntityExperienceOrbMessage decode(ByteBuf buffer) throws IOException {
-		int id = buffer.readInt();
+		int id = VanillaByteBufUtils.readVarInt(buffer);
 		int x = buffer.readInt();
 		int y = buffer.readInt();
 		int z = buffer.readInt();
@@ -55,7 +55,7 @@ public class EntityExperienceOrbCodec extends MessageCodec<EntityExperienceOrbMe
 	@Override
 	public ByteBuf encode(EntityExperienceOrbMessage message) throws IOException {
 		ByteBuf buffer = Unpooled.buffer(18);
-		buffer.writeInt(message.getEntityId());
+		VanillaByteBufUtils.writeVarInt(buffer, message.getEntityId());
 		buffer.writeInt(message.getX());
 		buffer.writeInt(message.getY());
 		buffer.writeInt(message.getZ());

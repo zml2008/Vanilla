@@ -31,7 +31,7 @@ import org.spout.api.entity.Entity;
 import org.spout.vanilla.component.entity.misc.MetadataComponent;
 import org.spout.vanilla.component.entity.substance.Substance;
 import org.spout.vanilla.data.VanillaData;
-import org.spout.vanilla.protocol.entity.object.ArrowObjectEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.ArrowObjectEntityProtocol;
 
 public class Arrow extends Substance implements Projectile {
 	public static final int ID = 60;

@@ -42,97 +42,94 @@ import org.spout.vanilla.data.Animation;
 import org.spout.vanilla.data.GameMode;
 import org.spout.vanilla.inventory.window.WindowType;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.protocol.msg.ServerListPingMessage;
-import org.spout.vanilla.protocol.msg.ServerPluginMessage;
-import org.spout.vanilla.protocol.msg.auth.EncryptionKeyRequestMessage;
-import org.spout.vanilla.protocol.msg.auth.EncryptionKeyResponseMessage;
-import org.spout.vanilla.protocol.msg.entity.EntityActionMessage;
-import org.spout.vanilla.protocol.msg.entity.EntityAnimationMessage;
-import org.spout.vanilla.protocol.msg.entity.EntityAttachEntityMessage;
-import org.spout.vanilla.protocol.msg.entity.EntityDestroyMessage;
-import org.spout.vanilla.protocol.msg.entity.EntityEquipmentMessage;
-import org.spout.vanilla.protocol.msg.entity.EntityInitializeMessage;
-import org.spout.vanilla.protocol.msg.entity.EntityItemDataMessage;
-import org.spout.vanilla.protocol.msg.entity.EntityMetadataMessage;
-import org.spout.vanilla.protocol.msg.entity.EntityPropertiesMessage;
-import org.spout.vanilla.protocol.msg.entity.EntityStatusMessage;
-import org.spout.vanilla.protocol.msg.entity.EntityTileDataMessage;
-import org.spout.vanilla.protocol.msg.entity.SteerVehicleMessage;
-import org.spout.vanilla.protocol.msg.entity.effect.EntityEffectMessage;
-import org.spout.vanilla.protocol.msg.entity.effect.EntityRemoveEffectMessage;
-import org.spout.vanilla.protocol.msg.entity.pos.EntityHeadYawMessage;
-import org.spout.vanilla.protocol.msg.entity.pos.EntityRelativePositionMessage;
-import org.spout.vanilla.protocol.msg.entity.pos.EntityRelativePositionYawMessage;
-import org.spout.vanilla.protocol.msg.entity.pos.EntityTeleportMessage;
-import org.spout.vanilla.protocol.msg.entity.pos.EntityVelocityMessage;
-import org.spout.vanilla.protocol.msg.entity.pos.EntityYawMessage;
-import org.spout.vanilla.protocol.msg.entity.spawn.EntityExperienceOrbMessage;
-import org.spout.vanilla.protocol.msg.entity.spawn.EntityMobMessage;
-import org.spout.vanilla.protocol.msg.entity.spawn.EntityObjectMessage;
-import org.spout.vanilla.protocol.msg.entity.spawn.EntityPaintingMessage;
-import org.spout.vanilla.protocol.msg.entity.spawn.EntityThunderboltMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerAbilityMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerBedMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerBlockPlacementMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerChatMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerCollectItemMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerDiggingMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerExperienceMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerGameStateMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerGroundMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerHealthMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerHeldItemChangeMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerLocaleViewDistanceMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerStatisticMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerStatusMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerTabCompleteMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerTimeMessage;
-import org.spout.vanilla.protocol.msg.player.PlayerUseEntityMessage;
-import org.spout.vanilla.protocol.msg.player.conn.PlayerHandshakeMessage;
-import org.spout.vanilla.protocol.msg.player.conn.PlayerKickMessage;
-import org.spout.vanilla.protocol.msg.player.conn.PlayerListMessage;
-import org.spout.vanilla.protocol.msg.player.conn.PlayerLoginRequestMessage;
-import org.spout.vanilla.protocol.msg.player.conn.PlayerPingMessage;
-import org.spout.vanilla.protocol.msg.player.pos.PlayerLookMessage;
-import org.spout.vanilla.protocol.msg.player.pos.PlayerPositionLookMessage;
-import org.spout.vanilla.protocol.msg.player.pos.PlayerPositionMessage;
-import org.spout.vanilla.protocol.msg.player.pos.PlayerRespawnMessage;
-import org.spout.vanilla.protocol.msg.player.pos.PlayerSpawnMessage;
-import org.spout.vanilla.protocol.msg.player.pos.PlayerSpawnPositionMessage;
-import org.spout.vanilla.protocol.msg.scoreboard.ScoreboardDisplayMessage;
-import org.spout.vanilla.protocol.msg.scoreboard.ScoreboardObjectiveMessage;
-import org.spout.vanilla.protocol.msg.scoreboard.ScoreboardScoreMessage;
-import org.spout.vanilla.protocol.msg.scoreboard.ScoreboardTeamMessage;
-import org.spout.vanilla.protocol.msg.window.WindowClickMessage;
-import org.spout.vanilla.protocol.msg.window.WindowCloseMessage;
-import org.spout.vanilla.protocol.msg.window.WindowCreativeActionMessage;
-import org.spout.vanilla.protocol.msg.window.WindowEnchantItemMessage;
-import org.spout.vanilla.protocol.msg.window.WindowItemsMessage;
-import org.spout.vanilla.protocol.msg.window.WindowOpenMessage;
-import org.spout.vanilla.protocol.msg.window.WindowPropertyMessage;
-import org.spout.vanilla.protocol.msg.window.WindowSlotMessage;
-import org.spout.vanilla.protocol.msg.window.WindowTransactionMessage;
-import org.spout.vanilla.protocol.msg.world.EffectMessage;
-import org.spout.vanilla.protocol.msg.world.ExplosionMessage;
-import org.spout.vanilla.protocol.msg.world.ParticleEffectMessage;
-import org.spout.vanilla.protocol.msg.world.SoundEffectMessage;
-import org.spout.vanilla.protocol.msg.world.block.BlockActionMessage;
-import org.spout.vanilla.protocol.msg.world.block.BlockBreakAnimationMessage;
-import org.spout.vanilla.protocol.msg.world.block.BlockBulkMessage;
-import org.spout.vanilla.protocol.msg.world.block.BlockChangeMessage;
-import org.spout.vanilla.protocol.msg.world.block.SignMessage;
-import org.spout.vanilla.protocol.msg.world.chunk.ChunkBulkMessage;
-import org.spout.vanilla.protocol.msg.world.chunk.ChunkDataMessage;
+import org.spout.vanilla.protocol.game.VanillaGameProtocol;
+import org.spout.vanilla.protocol.game.msg.ServerPluginMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityActionMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityAnimationMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityAttachEntityMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityDestroyMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityEquipmentMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityInitializeMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityItemDataMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityMetadataMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityPropertiesMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityStatusMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityTileDataMessage;
+import org.spout.vanilla.protocol.game.msg.entity.SteerVehicleMessage;
+import org.spout.vanilla.protocol.game.msg.entity.effect.EntityEffectMessage;
+import org.spout.vanilla.protocol.game.msg.entity.effect.EntityRemoveEffectMessage;
+import org.spout.vanilla.protocol.game.msg.entity.pos.EntityHeadYawMessage;
+import org.spout.vanilla.protocol.game.msg.entity.pos.EntityRelativePositionMessage;
+import org.spout.vanilla.protocol.game.msg.entity.pos.EntityRelativePositionYawMessage;
+import org.spout.vanilla.protocol.game.msg.entity.pos.EntityTeleportMessage;
+import org.spout.vanilla.protocol.game.msg.entity.pos.EntityVelocityMessage;
+import org.spout.vanilla.protocol.game.msg.entity.pos.EntityYawMessage;
+import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityExperienceOrbMessage;
+import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityMobMessage;
+import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityObjectMessage;
+import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityPaintingMessage;
+import org.spout.vanilla.protocol.game.msg.entity.spawn.EntityThunderboltMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerAbilityMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerBedMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerBlockPlacementMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerChatMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerCollectItemMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerDiggingMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerExperienceMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerGameStateMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerGroundMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerHealthMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerHeldItemChangeMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerLocaleViewDistanceMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerStatisticMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerStatusMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerTabCompleteMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerTimeMessage;
+import org.spout.vanilla.protocol.game.msg.player.PlayerUseEntityMessage;
+import org.spout.vanilla.protocol.game.msg.player.conn.PlayerKickMessage;
+import org.spout.vanilla.protocol.game.msg.player.conn.PlayerListMessage;
+import org.spout.vanilla.protocol.game.msg.player.conn.PlayerLoginRequestMessage;
+import org.spout.vanilla.protocol.game.msg.player.conn.PlayerPingMessage;
+import org.spout.vanilla.protocol.game.msg.player.pos.PlayerLookMessage;
+import org.spout.vanilla.protocol.game.msg.player.pos.PlayerPositionLookMessage;
+import org.spout.vanilla.protocol.game.msg.player.pos.PlayerPositionMessage;
+import org.spout.vanilla.protocol.game.msg.player.pos.PlayerRespawnMessage;
+import org.spout.vanilla.protocol.game.msg.player.pos.PlayerSpawnMessage;
+import org.spout.vanilla.protocol.game.msg.player.pos.PlayerSpawnPositionMessage;
+import org.spout.vanilla.protocol.game.msg.scoreboard.ScoreboardDisplayMessage;
+import org.spout.vanilla.protocol.game.msg.scoreboard.ScoreboardObjectiveMessage;
+import org.spout.vanilla.protocol.game.msg.scoreboard.ScoreboardScoreMessage;
+import org.spout.vanilla.protocol.game.msg.scoreboard.ScoreboardTeamMessage;
+import org.spout.vanilla.protocol.game.msg.window.WindowClickMessage;
+import org.spout.vanilla.protocol.game.msg.window.WindowCloseMessage;
+import org.spout.vanilla.protocol.game.msg.window.WindowCreativeActionMessage;
+import org.spout.vanilla.protocol.game.msg.window.WindowEnchantItemMessage;
+import org.spout.vanilla.protocol.game.msg.window.WindowItemsMessage;
+import org.spout.vanilla.protocol.game.msg.window.WindowOpenMessage;
+import org.spout.vanilla.protocol.game.msg.window.WindowPropertyMessage;
+import org.spout.vanilla.protocol.game.msg.window.WindowSlotMessage;
+import org.spout.vanilla.protocol.game.msg.window.WindowTransactionMessage;
+import org.spout.vanilla.protocol.game.msg.world.EffectMessage;
+import org.spout.vanilla.protocol.game.msg.world.ExplosionMessage;
+import org.spout.vanilla.protocol.game.msg.world.ParticleEffectMessage;
+import org.spout.vanilla.protocol.game.msg.world.SoundEffectMessage;
+import org.spout.vanilla.protocol.game.msg.world.block.BlockActionMessage;
+import org.spout.vanilla.protocol.game.msg.world.block.BlockBreakAnimationMessage;
+import org.spout.vanilla.protocol.game.msg.world.block.BlockBulkMessage;
+import org.spout.vanilla.protocol.game.msg.world.block.BlockChangeMessage;
+import org.spout.vanilla.protocol.game.msg.world.block.SignMessage;
+import org.spout.vanilla.protocol.game.msg.world.chunk.ChunkBulkMessage;
+import org.spout.vanilla.protocol.game.msg.world.chunk.ChunkDataMessage;
 import org.spout.vanilla.protocol.netcache.protocol.ChunkCacheMessage;
-import org.spout.vanilla.protocol.plugin.BeaconMessage;
-import org.spout.vanilla.protocol.plugin.CommandBlockMessage;
-import org.spout.vanilla.protocol.plugin.RegisterPluginChannelMessage;
-import org.spout.vanilla.protocol.plugin.UnregisterPluginChannelMessage;
+import org.spout.vanilla.protocol.game.plugin.BeaconMessage;
+import org.spout.vanilla.protocol.game.plugin.CommandBlockMessage;
+import org.spout.vanilla.protocol.game.plugin.RegisterPluginChannelMessage;
+import org.spout.vanilla.protocol.game.plugin.UnregisterPluginChannelMessage;
 
 import static org.spout.vanilla.protocol.VanillaByteBufUtilsTest.TEST_PARAMS;
 
 public class VanillaProtocolTest extends BaseProtocolTest {
-	private static final VanillaProtocol PROTOCOL = new VanillaProtocol();
+	private static final VanillaProtocol PROTOCOL = VanillaGameProtocol.INSTANCE;
 	static final boolean[] allFalse = new boolean[16];
 	static final byte[][] columnData = new byte[16][10240];
 	static final byte[] biomeData1 = new byte[256];
@@ -141,7 +138,7 @@ public class VanillaProtocolTest extends BaseProtocolTest {
 			new PlayerPingMessage(42),
 			new WindowCreativeActionMessage((short) 0, new ItemStack(VanillaMaterials.BED, 10, 20)),
 			new PlayerLoginRequestMessage(0, "nether", (byte) 0, (byte) 0, (byte) 0, (short) 10),
-			new PlayerHandshakeMessage((byte) 42, "Spouty", "SpoutTron", 9001),
+			//new PlayerHandshakeMessage((byte) 42, "Spouty", "SpoutTron", 9001),
 			new PlayerChatMessage("<Spouty> This is a thing called a chat message"),
 			new PlayerTimeMessage(333L, 666L),
 			new EntityEquipmentMessage(234, 3, new ItemStack(VanillaMaterials.PLANK, 3, 55)),
@@ -204,11 +201,11 @@ public class VanillaProtocolTest extends BaseProtocolTest {
 			new EntityItemDataMessage((short) 1, (short) 2, new byte[] {2, 3, 8, 127, 123}),
 			new EntityTileDataMessage(23, 45, 903, (byte) 1, new CompoundMap(), NullRepositionManager.getInstance()),
 			new PlayerStatisticMessage(1, (byte) 5),
-			new EncryptionKeyResponseMessage(false, new byte[] {(byte) 7, (byte) 4, (byte) 1, (byte) 122}, new byte[] {(byte) 6, (byte) 3, (byte) 4, (byte) 122}),
-			new EncryptionKeyRequestMessage("This is a server", false, new byte[] {(byte) 1, (byte) 2, (byte) 3, (byte) 10}, new byte[] {(byte) 12, (byte) 54, (byte) 4, (byte) 122}),
+			//new EncryptionKeyResponseMessage(false, new byte[] {(byte) 7, (byte) 4, (byte) 1, (byte) 122}, new byte[] {(byte) 6, (byte) 3, (byte) 4, (byte) 122}),
+			//new EncryptionKeyRequestMessage("This is a server", false, new byte[] {(byte) 1, (byte) 2, (byte) 3, (byte) 10}, new byte[] {(byte) 12, (byte) 54, (byte) 4, (byte) 122}),
 			new PlayerListMessage("Player", true, (short) 23),
 			new ServerPluginMessage("EMERGENCY", new byte[] {0, 1, 1, 8, 9, 9, 8, 8, 8, 1, 9, 9, 9, 1, 1, 9, 7, 2, 5, 3}),
-			new ServerListPingMessage(),
+			//new ServerListPingMessage(),
 			new PlayerKickMessage("This is a test"),
 			new PlayerAbilityMessage(true, true, true, true, (byte) 0, (byte) 5),
 			new PlayerStatusMessage((byte) 0),

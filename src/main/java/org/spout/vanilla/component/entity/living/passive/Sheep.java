@@ -46,9 +46,9 @@ import org.spout.vanilla.event.entity.network.EntityStatusEvent;
 import org.spout.vanilla.material.VanillaMaterials;
 import org.spout.vanilla.material.block.solid.Wool;
 import org.spout.vanilla.material.block.solid.Wool.WoolColor;
-import org.spout.vanilla.protocol.entity.creature.CreatureProtocol;
-import org.spout.vanilla.protocol.entity.creature.CreatureType;
-import org.spout.vanilla.protocol.msg.entity.EntityStatusMessage;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureProtocol;
+import org.spout.vanilla.protocol.game.entity.creature.CreatureType;
+import org.spout.vanilla.protocol.game.msg.entity.EntityStatusMessage;
 
 /**
  * A component that identifies the entity as a Sheep.

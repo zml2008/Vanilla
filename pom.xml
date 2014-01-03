@@ -5,7 +5,7 @@
 	<name>Vanilla</name>
 	<groupId>org.spout</groupId>
 	<artifactId>vanilla</artifactId>
-	<version>1.7.0-SNAPSHOT</version>
+	<version>1.7.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<inceptionYear>2011</inceptionYear>
 	<url>https://github.com/Vanilla/Vanilla</url>
@@ -25,8 +25,8 @@
 		<ciSystem>unknown</ciSystem>
 		<commit>unknown</commit>
 		<mainClass>${project.groupId}.${project.artifactId}.${project.name}Plugin</mainClass>
-		<protocolClass>${project.groupId}.${project.artifactId}.protocol.${project.name}Protocol</protocolClass>
-		<protocolVersion>80</protocolVersion>
+		<protocolClass>${project.groupId}.${project.artifactId}.protocol.handshake.${project.name}HandshakeProtocol</protocolClass>
+		<protocolVersion>4</protocolVersion>
 		<!-- See http://wiki.vg/Protocol_version_numbers -->
 	</properties>
 

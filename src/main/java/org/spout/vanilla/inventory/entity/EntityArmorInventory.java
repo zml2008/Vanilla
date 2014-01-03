@@ -36,7 +36,7 @@ import org.spout.vanilla.material.item.armor.Boots;
 import org.spout.vanilla.material.item.armor.Chestplate;
 import org.spout.vanilla.material.item.armor.Helmet;
 import org.spout.vanilla.material.item.armor.Leggings;
-import org.spout.vanilla.protocol.msg.entity.EntityEquipmentMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityEquipmentMessage;
 
 public class EntityArmorInventory extends ArmorInventory {
 	@Override

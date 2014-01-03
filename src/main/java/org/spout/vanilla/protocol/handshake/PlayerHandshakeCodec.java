@@ -40,10 +40,10 @@ public final class PlayerHandshakeCodec extends MessageCodec<PlayerHandshakeMess
 
 	@Override
 	public PlayerHandshakeMessage decode(ByteBuf buffer) {
-		int protoVersion = (int) VanillaByteBufUtils.readVarInt(buffer);
+		int protoVersion = VanillaByteBufUtils.readVarInt(buffer);
 		String hostname = VanillaByteBufUtils.readString(buffer);
 		int port = buffer.readUnsignedShort();
-		int nextState = (int) VanillaByteBufUtils.readVarInt(buffer);
+		int nextState = VanillaByteBufUtils.readVarInt(buffer);
 		return new PlayerHandshakeMessage(protoVersion, hostname, port, nextState);
 	}
 

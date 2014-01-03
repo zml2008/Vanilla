@@ -31,6 +31,7 @@ import org.junit.Test;
 
 import org.spout.api.inventory.ItemStack;
 
+import org.spout.vanilla.EngineFaker;
 import org.spout.vanilla.material.VanillaMaterials;
 import org.spout.vanilla.material.enchantment.Enchantment;
 import org.spout.vanilla.material.enchantment.EnchantmentRegistry;
@@ -39,6 +40,9 @@ import org.spout.vanilla.material.enchantment.VanillaEnchantments;
 import static org.junit.Assert.assertTrue;
 
 public class EnchantmentTest {
+	static {
+		EngineFaker.setupEngine();
+	}
 	@Test
 	public void testEnchantmentsList() {
 		Enchantment[] list = EnchantmentRegistry.values();

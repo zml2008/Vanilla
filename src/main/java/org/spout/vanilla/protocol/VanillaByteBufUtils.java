@@ -27,6 +27,7 @@
 package org.spout.vanilla.protocol;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,7 @@ import static org.spout.api.util.ByteBufUtils.readCompound;
 import static org.spout.api.util.ByteBufUtils.writeCompound;
 
 public final class VanillaByteBufUtils {
+	public static final Charset UTF_8_CHARSET = Charset.forName("UTF-8");
 	/**
 	 * Writes a list of parameters (e.g. mob metadata) to the buffer.
 	 *
@@ -126,6 +128,30 @@ public final class VanillaByteBufUtils {
 		return parameters;
 	}
 
+	private static final byte VARINT_MORE_FLAG = (byte) (1 << 7);
+	public static int readVarInt(ByteBuf buffer) {
+		int ret = 0;
+		short read;
+		byte offset = 0;
+		do {
+			read = buffer.readUnsignedByte();
+			ret = ret | ((read & ~VARINT_MORE_FLAG) << offset);
+			offset += 7;
+		} while (((read >> 7) & 1) != 0);
+		return ret;
+	}
+
+	public static void writeVarInt(ByteBuf buffer, int num) {
+		while (num != 0) {
+			short write = (short) (num & ~VARINT_MORE_FLAG);
+			num >>= 7;
+			if (num != 0) {
+				write |= VARINT_MORE_FLAG;
+			}
+			buffer.writeByte(write);
+		}
+	}
+
 	/**
 	 * Writes a string to the buffer.
 	 *
@@ -134,14 +160,8 @@ public final class VanillaByteBufUtils {
 	 * @throws IllegalArgumentException if the string is too long <em>after</em> it is encoded.
 	 */
 	public static void writeString(ByteBuf buf, String str) {
-		int len = str.length();
-		if (len >= 65536) {
-			throw new IllegalArgumentException("String too long.");
-		}
-		buf.writeShort(len);
-		for (int i = 0; i < len; ++i) {
-			buf.writeChar(str.charAt(i));
-		}
+		writeVarInt(buf, str.length());
+		buf.writeBytes(str.getBytes(UTF_8_CHARSET));
 	}
 
 	/**
@@ -151,25 +171,23 @@ public final class VanillaByteBufUtils {
 	 * @return The string.
 	 */
 	public static String readString(ByteBuf buf) {
-		int len = buf.readUnsignedShort();
+		int len = (int) readVarInt(buf);
 
-		char[] characters = new char[len];
-		for (int i = 0; i < len; i++) {
-			characters[i] = buf.readChar();
-		}
+		byte[] chars = new byte[len];
+		buf.readBytes(chars);
 
-		return new String(characters);
+		return new String(chars, UTF_8_CHARSET);
 	}
 
 	/**
 	 * Gets the size of a String represented in the formats read and written by
 	 * {@link #writeString(ByteBuf, String)} and {@link #readString(ByteBuf)}.
-	 * 
+	 *
 	 * @param str to get the written length of
 	 * @return String length
 	 */
-	public static int getStringLength(String str) {
-		return str.length() * 2 + 2;
+	public static int getMinStringLength(String str) {
+		return str.length() + 1;
 	}
 
 	public static ItemStack readItemStack(ByteBuf buffer) throws IOException {

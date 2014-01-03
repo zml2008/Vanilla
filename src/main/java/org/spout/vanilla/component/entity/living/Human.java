@@ -58,8 +58,8 @@ import org.spout.vanilla.event.player.PlayerGameModeChangedEvent;
 import org.spout.vanilla.event.player.network.PlayerAbilityUpdateEvent;
 import org.spout.vanilla.event.player.network.PlayerGameStateEvent;
 import org.spout.vanilla.material.block.liquid.Water;
-import org.spout.vanilla.protocol.entity.HumanEntityProtocol;
-import org.spout.vanilla.protocol.msg.player.PlayerGameStateMessage;
+import org.spout.vanilla.protocol.game.entity.HumanEntityProtocol;
+import org.spout.vanilla.protocol.game.msg.player.PlayerGameStateMessage;
 
 /**
  * A component that identifies the entity as a Vanilla player.

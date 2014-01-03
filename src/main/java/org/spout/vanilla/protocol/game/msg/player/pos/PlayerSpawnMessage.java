@@ -27,6 +27,7 @@
 package org.spout.vanilla.protocol.game.msg.player.pos;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -35,19 +36,20 @@ import org.spout.api.util.SpoutToStringStyle;
 
 import org.spout.math.vector.Vector3;
 import org.spout.vanilla.protocol.game.msg.entity.EntityMessage;
-import org.spout.vanilla.protocol.game.msg.entity.EntityMessage;
 
 public final class PlayerSpawnMessage extends EntityMessage {
 	private final int x, y, z, yaw, pitch, item;
 	private final String name;
+	private final UUID playerUid;
 	private final List<Parameter<?>> parameters;
 
-	public PlayerSpawnMessage(int id, String name, Vector3 position, int yaw, int pitch, int item, List<Parameter<?>> parameters) {
-		this(id, name, (int) position.getX(), (int) position.getY(), (int) position.getZ(), yaw, pitch, item, parameters);
+	public PlayerSpawnMessage(int id, UUID playerUid, String name, Vector3 position, int yaw, int pitch, int item, List<Parameter<?>> parameters) {
+		this(id, playerUid, name, (int) position.getX(), (int) position.getY(), (int) position.getZ(), yaw, pitch, item, parameters);
 	}
 
-	public PlayerSpawnMessage(int id, String name, int x, int y, int z, int yaw, int pitch, int item, List<Parameter<?>> parameters) {
+	public PlayerSpawnMessage(int id, UUID playerUid, String name, int x, int y, int z, int yaw, int pitch, int item, List<Parameter<?>> parameters) {
 		super(id);
+		this.playerUid = playerUid;
 		this.name = name;
 		this.x = x;
 		this.y = y;
@@ -60,6 +62,10 @@ public final class PlayerSpawnMessage extends EntityMessage {
 
 	public String getName() {
 		return name;
+	}
+
+	public UUID getPlayerUid() {
+		return playerUid;
 	}
 
 	public int getX() {

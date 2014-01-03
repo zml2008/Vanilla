@@ -24,53 +24,69 @@
  * License and see <http://spout.in/licensev1> for the full license, including
  * the MIT license.
  */
-package org.spout.vanilla.protocol.msg.world.block;
+package org.spout.vanilla.protocol.game.msg.player.conn;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import org.spout.api.protocol.reposition.RepositionManager;
 import org.spout.api.util.SpoutToStringStyle;
 
-import org.spout.vanilla.protocol.msg.VanillaBlockDataChannelMessage;
+import org.spout.vanilla.protocol.game.msg.VanillaMainChannelMessage;
 
-public final class SignMessage extends VanillaBlockDataChannelMessage {
-	private final int x, y, z;
-	private final String[] message;
+public final class PlayerJoinGameMessage extends VanillaMainChannelMessage {
+	private final int id;
+	private final byte dimension;
+	private final short mode;
+	private final short difficulty;
+	private final String worldType;
+	private final short maxPlayers;
 
-	public SignMessage(int x, int y, int z, String[] message, RepositionManager rm) {
-		if (message.length != 4) {
-			throw new IllegalArgumentException();
-		}
-
-		this.x = rm.convertX(x);
-		this.y = rm.convertY(y);
-		this.z = rm.convertZ(z);
-		this.message = message;
+	public PlayerJoinGameMessage(int id, String worldType, short mode, byte dimension, short difficulty, short maxPlayers) {
+		this.id = id;
+		this.worldType = worldType;
+		this.mode = mode;
+		this.dimension = dimension;
+		this.difficulty = difficulty;
+		this.maxPlayers = maxPlayers;
 	}
 
-	public int getX() {
-		return x;
+	public int getId() {
+		return id;
 	}
 
-	public int getY() {
-		return y;
+	public String getWorldType() {
+		return worldType;
 	}
 
-	public int getZ() {
-		return z;
+	public short getGameMode() {
+		return mode;
 	}
 
-	public String[] getMessage() {
-		return message;
+	public byte getDimension() {
+		return dimension;
+	}
+
+	public short getDifficulty() {
+		return difficulty;
+	}
+
+	public short getMaxPlayers() {
+		return maxPlayers;
+	}
+
+	@Override
+	public boolean requiresPlayer() {
+		return false;
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this, SpoutToStringStyle.INSTANCE)
-				.append("x", this.x)
-				.append("y", this.y)
-				.append("z", this.z)
-				.append("message", this.message, true)
+				.append("id", id)
+				.append("worldType", worldType)
+				.append("mode", mode)
+				.append("dimension", dimension)
+				.append("difficulty", difficulty)
+				.append("maxPlayers", maxPlayers)
 				.toString();
 	}
 
@@ -79,25 +95,29 @@ public final class SignMessage extends VanillaBlockDataChannelMessage {
 		if (obj == null) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		if (!getClass().equals(obj.getClass())) {
 			return false;
 		}
-		final SignMessage other = (SignMessage) obj;
+		final PlayerJoinGameMessage other = (PlayerJoinGameMessage) obj;
 		return new org.apache.commons.lang3.builder.EqualsBuilder()
-				.append(this.x, other.x)
-				.append(this.y, other.y)
-				.append(this.z, other.z)
-				.append(this.message, other.message)
+				.append(this.id, other.id)
+				.append(this.worldType, other.worldType)
+				.append(this.mode, other.mode)
+				.append(this.dimension, other.dimension)
+				.append(this.difficulty, other.difficulty)
+				.append(this.maxPlayers, other.maxPlayers)
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new org.apache.commons.lang3.builder.HashCodeBuilder()
-				.append(this.x)
-				.append(this.y)
-				.append(this.z)
-				.append(this.message)
+				.append(this.id)
+				.append(this.worldType)
+				.append(this.mode)
+				.append(this.dimension)
+				.append(this.difficulty)
+				.append(this.maxPlayers)
 				.toHashCode();
 	}
 }

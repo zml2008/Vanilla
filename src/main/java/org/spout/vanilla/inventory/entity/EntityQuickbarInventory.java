@@ -30,7 +30,7 @@ import org.spout.api.entity.Entity;
 import org.spout.api.inventory.ItemStack;
 
 import org.spout.vanilla.event.entity.network.EntityEquipmentEvent;
-import org.spout.vanilla.protocol.msg.entity.EntityEquipmentMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityEquipmentMessage;
 
 /**
  * Represents the four armor slots of an Entity's inventory.<br/>

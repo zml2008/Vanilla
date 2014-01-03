@@ -28,6 +28,7 @@ package org.spout.vanilla.protocol.game.codec.player.pos;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -37,16 +38,16 @@ import org.spout.api.util.Parameter;
 
 import org.spout.vanilla.protocol.VanillaByteBufUtils;
 import org.spout.vanilla.protocol.game.msg.player.pos.PlayerSpawnMessage;
-import org.spout.vanilla.protocol.game.msg.player.pos.PlayerSpawnMessage;
 
 public final class PlayerSpawnCodec extends MessageCodec<PlayerSpawnMessage> {
 	public PlayerSpawnCodec() {
-		super(PlayerSpawnMessage.class, 0x14);
+		super(PlayerSpawnMessage.class, -1, 0x0C);
 	}
 
 	@Override
 	public PlayerSpawnMessage decode(ByteBuf buffer) throws IOException {
-		int id = buffer.readInt();
+		int id = VanillaByteBufUtils.readVarInt(buffer);
+		UUID playerId = UUID.fromString(VanillaByteBufUtils.readString(buffer));
 		String name = VanillaByteBufUtils.readString(buffer);
 		int x = buffer.readInt();
 		int y = buffer.readInt();
@@ -55,13 +56,14 @@ public final class PlayerSpawnCodec extends MessageCodec<PlayerSpawnMessage> {
 		int pitch = buffer.readUnsignedByte();
 		int item = buffer.readUnsignedShort();
 		List<Parameter<?>> parameters = VanillaByteBufUtils.readParameters(buffer);
-		return new PlayerSpawnMessage(id, name, x, y, z, rotation, pitch, item, parameters);
+		return new PlayerSpawnMessage(id, playerId, name, x, y, z, rotation, pitch, item, parameters);
 	}
 
 	@Override
 	public ByteBuf encode(PlayerSpawnMessage message) throws IOException {
 		ByteBuf buffer = Unpooled.buffer();
-		buffer.writeInt(message.getEntityId());
+		VanillaByteBufUtils.writeVarInt(buffer, message.getId());
+		VanillaByteBufUtils.writeString(buffer, message.getPlayerUid().toString());
 		VanillaByteBufUtils.writeString(buffer, message.getName());
 		buffer.writeInt(message.getX());
 		buffer.writeInt(message.getY());

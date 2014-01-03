@@ -33,7 +33,7 @@ import org.spout.api.geo.World;
 public interface TileMaterial {
 	/**
 	 * Gets the protocol event to reflect the block state at the location or null if none exists Used when sending chunks to the client in {@link
-	 * org.spout.vanilla.protocol.msg.world.chunk.ChunkDataMessage}
+	 * org.spout.vanilla.protocol.game.msg.world.chunk.ChunkDataMessage}
 	 *
 	 * @return event
 	 */

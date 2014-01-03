@@ -32,30 +32,28 @@ import io.netty.buffer.Unpooled;
 import org.spout.api.protocol.MessageCodec;
 
 import org.spout.vanilla.protocol.VanillaByteBufUtils;
-import org.spout.vanilla.protocol.game.msg.player.conn.PlayerLoginRequestMessage;
-import org.spout.vanilla.protocol.game.msg.player.conn.PlayerLoginRequestMessage;
+import org.spout.vanilla.protocol.game.msg.player.conn.PlayerJoinGameMessage;
 
-public final class PlayerLoginRequestCodec extends MessageCodec<PlayerLoginRequestMessage> {
-	public PlayerLoginRequestCodec() {
-		super(PlayerLoginRequestMessage.class, 0x01);
+public final class PlayerJoinGameCodec extends MessageCodec<PlayerJoinGameMessage> {
+	public PlayerJoinGameCodec() {
+		super(PlayerJoinGameMessage.class, -1, 0x01);
 	}
 
 	@Override
-	public PlayerLoginRequestMessage decodeFromServer(ByteBuf buffer) {
+	public PlayerJoinGameMessage decodeFromServer(ByteBuf buffer) {
 		int id = buffer.readInt();
-		String worldType = VanillaByteBufUtils.readString(buffer);
-		byte mode = buffer.readByte();
+		short mode = buffer.readUnsignedByte();
 		byte dimension = buffer.readByte();
-		byte difficulty = buffer.readByte();
-		buffer.readUnsignedByte(); //not used?
+		short difficulty = buffer.readUnsignedByte();
 		short maxPlayers = buffer.readUnsignedByte();
-		return new PlayerLoginRequestMessage(id, worldType, mode, dimension, difficulty, maxPlayers);
+		final String worldType = VanillaByteBufUtils.readString(buffer);
+		return new PlayerJoinGameMessage(id, worldType, mode, dimension, difficulty, maxPlayers);
 	}
 
 	/* This is needed for tests to complete. It is not actually used.
 	 * See the commented-out code below this function */
-	@Override
-	public PlayerLoginRequestMessage decodeFromClient(ByteBuf buffer) {
+	/*@Override
+	public PlayerJoinGameMessage decodeFromClient(ByteBuf buffer) {
 		int id = buffer.readInt();
 		String worldType = VanillaByteBufUtils.readString(buffer);
 		byte mode = buffer.readByte();
@@ -63,12 +61,24 @@ public final class PlayerLoginRequestCodec extends MessageCodec<PlayerLoginReque
 		byte difficulty = buffer.readByte();
 		buffer.readUnsignedByte(); //not used?
 		short maxPlayers = buffer.readUnsignedByte();
-		return new PlayerLoginRequestMessage(id, worldType, mode, dimension, difficulty, maxPlayers);
-	}
+		return new PlayerJoinGameMessage(id, worldType, mode, dimension, difficulty, maxPlayers);
+	}*/
 
 	@Override
-	public ByteBuf encodeToClient(PlayerLoginRequestMessage message) {
-		PlayerLoginRequestMessage server = message;
+	public ByteBuf encodeToClient(PlayerJoinGameMessage message) {
+		ByteBuf buffer = Unpooled.buffer();
+		buffer.writeInt(message.getId());
+		buffer.writeByte(message.getGameMode());
+		buffer.writeByte(message.getDimension());
+		buffer.writeByte(message.getDifficulty());
+		buffer.writeByte(message.getMaxPlayers());
+		VanillaByteBufUtils.writeString(buffer, message.getWorldType());
+		return buffer;
+	}
+
+	/*@Override
+	public ByteBuf encodeToServer(PlayerJoinGameMessage message) {
+		PlayerJoinGameMessage server = message;
 		ByteBuf buffer = Unpooled.buffer();
 		buffer.writeInt(server.getId());
 		VanillaByteBufUtils.writeString(buffer, server.getWorldType());
@@ -78,19 +88,5 @@ public final class PlayerLoginRequestCodec extends MessageCodec<PlayerLoginReque
 		buffer.writeByte(0);
 		buffer.writeByte(server.getMaxPlayers());
 		return buffer;
-	}
-
-	@Override
-	public ByteBuf encodeToServer(PlayerLoginRequestMessage message) {
-		PlayerLoginRequestMessage server = message;
-		ByteBuf buffer = Unpooled.buffer();
-		buffer.writeInt(server.getId());
-		VanillaByteBufUtils.writeString(buffer, server.getWorldType());
-		buffer.writeByte(server.getGameMode());
-		buffer.writeByte(server.getDimension());
-		buffer.writeByte(server.getDifficulty());
-		buffer.writeByte(0);
-		buffer.writeByte(server.getMaxPlayers());
-		return buffer;
-	}
+	}*/
 }

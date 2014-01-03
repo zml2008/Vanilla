@@ -96,7 +96,7 @@ public enum WindowType {
 	}
 
 	/**
-	 * Returns the id sent to the client in the {@link org.spout.vanilla.protocol.msg.window.WindowOpenMessage}
+	 * Returns the id sent to the client in the {@link org.spout.vanilla.protocol.game.msg.window.WindowOpenMessage}
 	 *
 	 * @return id of type
 	 */

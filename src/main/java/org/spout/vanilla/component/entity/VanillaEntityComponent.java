@@ -33,7 +33,7 @@ import org.spout.api.entity.Player;
 
 import org.spout.vanilla.data.VanillaData;
 import org.spout.vanilla.protocol.VanillaNetworkProtocol;
-import org.spout.vanilla.protocol.entity.VanillaEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.VanillaEntityProtocol;
 
 public class VanillaEntityComponent extends EntityComponent {
 

@@ -35,7 +35,7 @@ import org.spout.api.util.Named;
 
 import org.spout.vanilla.data.VanillaData;
 import org.spout.vanilla.event.scoreboard.TeamActionEvent;
-import org.spout.vanilla.protocol.msg.scoreboard.ScoreboardTeamMessage;
+import org.spout.vanilla.protocol.game.msg.scoreboard.ScoreboardTeamMessage;
 
 /**
  * Represents a team of players associated with a scoreboard.

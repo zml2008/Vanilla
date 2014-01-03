@@ -35,7 +35,7 @@ import org.spout.vanilla.protocol.game.msg.player.conn.PlayerPingMessage;
 
 public final class PlayerPingCodec extends MessageCodec<PlayerPingMessage> {
 	public PlayerPingCodec() {
-		super(PlayerPingMessage.class, 0x00);
+		super(PlayerPingMessage.class, 0x00, 0x00);
 	}
 
 	@Override

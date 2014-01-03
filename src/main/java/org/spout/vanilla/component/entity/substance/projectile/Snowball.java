@@ -32,8 +32,8 @@ import org.spout.api.event.entity.EntityCollideEvent;
 
 import org.spout.vanilla.component.entity.misc.Health;
 import org.spout.vanilla.component.entity.substance.Substance;
-import org.spout.vanilla.protocol.entity.object.ObjectEntityProtocol;
-import org.spout.vanilla.protocol.entity.object.ObjectType;
+import org.spout.vanilla.protocol.game.entity.object.ObjectEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.ObjectType;
 
 public class Snowball extends Substance implements Projectile {
 	private Entity shooter;

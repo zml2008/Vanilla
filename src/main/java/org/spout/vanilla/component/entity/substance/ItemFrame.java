@@ -42,7 +42,7 @@ import org.spout.vanilla.component.entity.misc.MetadataComponent;
 import org.spout.vanilla.data.Metadata;
 import org.spout.vanilla.event.entity.network.EntityMetaChangeEvent;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.protocol.entity.object.ItemFrameProtocol;
+import org.spout.vanilla.protocol.game.entity.object.ItemFrameProtocol;
 import org.spout.vanilla.util.PlayerUtil;
 
 public class ItemFrame extends Substance {

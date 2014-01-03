@@ -37,7 +37,7 @@ import org.spout.vanilla.protocol.game.msg.player.PlayerHeldItemChangeMessage;
 
 public final class PlayerHeldItemChangeCodec extends MessageCodec<PlayerHeldItemChangeMessage> {
 	public PlayerHeldItemChangeCodec() {
-		super(PlayerHeldItemChangeMessage.class, 0x10);
+		super(PlayerHeldItemChangeMessage.class, -1, 0x09);
 	}
 
 	@Override

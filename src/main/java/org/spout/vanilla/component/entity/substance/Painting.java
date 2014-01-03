@@ -38,7 +38,7 @@ import org.spout.vanilla.component.entity.misc.DeathDrops;
 import org.spout.vanilla.data.PaintingType;
 import org.spout.vanilla.data.VanillaData;
 import org.spout.vanilla.material.VanillaMaterials;
-import org.spout.vanilla.protocol.entity.object.PaintingEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.PaintingEntityProtocol;
 
 public class Painting extends Substance {
 	private float timer = 0f;

@@ -28,8 +28,8 @@ package org.spout.vanilla.component.entity.substance;
 
 import org.spout.vanilla.component.entity.misc.MetadataComponent;
 import org.spout.vanilla.data.Metadata;
-import org.spout.vanilla.protocol.entity.object.ObjectEntityProtocol;
-import org.spout.vanilla.protocol.entity.object.ObjectType;
+import org.spout.vanilla.protocol.game.entity.object.ObjectEntityProtocol;
+import org.spout.vanilla.protocol.game.entity.object.ObjectType;
 
 /**
  * A component that identifies the entity as an EnderCrystal.

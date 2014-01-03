@@ -40,7 +40,7 @@ import org.spout.vanilla.component.entity.substance.Substance;
 import org.spout.vanilla.data.Metadata;
 import org.spout.vanilla.data.VanillaData;
 import org.spout.vanilla.event.entity.network.EntityStatusEvent;
-import org.spout.vanilla.protocol.msg.entity.EntityStatusMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityStatusMessage;
 
 /**
  * A destroyable vehicle substance that can take damage. Instead of losing health, it loses durability. Durability is recovered at a fixed rate over time.

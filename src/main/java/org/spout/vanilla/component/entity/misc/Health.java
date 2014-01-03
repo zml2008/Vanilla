@@ -72,7 +72,7 @@ import org.spout.vanilla.event.entity.network.EntityMetaChangeEvent;
 import org.spout.vanilla.event.entity.network.EntityStatusEvent;
 import org.spout.vanilla.event.player.PlayerDeathEvent;
 import org.spout.vanilla.event.player.network.PlayerHealthEvent;
-import org.spout.vanilla.protocol.msg.entity.EntityStatusMessage;
+import org.spout.vanilla.protocol.game.msg.entity.EntityStatusMessage;
 
 /**
  * Component that adds a health-like attribute to resources.entities.

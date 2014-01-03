@@ -35,20 +35,19 @@ import org.spout.api.util.SpoutToStringStyle;
 
 import org.spout.math.imaginary.Quaternion;
 import org.spout.vanilla.protocol.game.msg.VanillaMainChannelMessage;
-import org.spout.vanilla.protocol.game.msg.VanillaMainChannelMessage;
 
 public final class PlayerPositionLookMessage extends VanillaMainChannelMessage {
 	private final PlayerPositionMessage position;
 	private final PlayerLookMessage rotation;
 
-	public PlayerPositionLookMessage(double x, double y, double z, double stance, float yaw, float pitch, boolean onGround, RepositionManager rm) {
-		position = new PlayerPositionMessage(x, y, z, stance, onGround, rm);
+	public PlayerPositionLookMessage(double x, double y, double z, float yaw, float pitch, boolean onGround, RepositionManager rm) {
+		position = new PlayerPositionMessage(x, y, z, onGround, rm);
 		rotation = new PlayerLookMessage(yaw, pitch, onGround);
 	}
 
-	public PlayerPositionLookMessage(double x, double y, double z, double stance, float yaw, float pitch, boolean onGround, int channelId, RepositionManager rm) {
+	public PlayerPositionLookMessage(double x, double y, double z, float yaw, float pitch, boolean onGround, int channelId, RepositionManager rm) {
 		super(channelId);
-		position = new PlayerPositionMessage(x, y, z, stance, onGround, rm);
+		position = new PlayerPositionMessage(x, y, z, onGround, rm);
 		rotation = new PlayerLookMessage(yaw, pitch, onGround);
 	}
 
